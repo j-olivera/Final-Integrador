@@ -28,18 +28,20 @@ public class User {
     }
     //nota:el enunciado no lo aclara, pero el codigo, fecha de cracion y expiración seran generadas por el sistema
     //ya que el usuario al registrarse solo necesita su email y contraseña, establecer mas datos es innecesario
-    private User createUser(String email, String password){
+    public static User createUser(String email, String password){
       validarDatosNoNulosNiVacios(email, password);
       LocalDateTime now = LocalDateTime.now();
       return new User(null, email, password ,UserStatus.PENDING, UUID.randomUUID().toString(), now.plusDays(7), now);
     }
 
-    private void validarDatosNoNulosNiVacios(String email, String password) {
+    public static void validarDatosNoNulosNiVacios(String email, String password) {
         if(email == null || email.isEmpty() || password == null || password.isEmpty())
             throw new InvalidDataException("Los datos propocionados no son validos");
     }
 
-    //falta de metodo reconstruir desde bd
+    public static User reconstructUser(Long id, String password,String email, UserStatus status, String activationCode, LocalDateTime activationExpiresAt, LocalDateTime createdAt) {
+        return new User(id, password, email, status, activationCode, activationExpiresAt, createdAt);
+    }
 
     public String getPassword(){
         return password;

@@ -30,6 +30,10 @@ public class Order {
         return new Order(null, user, OrderStatus.PENDING, amount, LocalDateTime.now(), null);
     }
 
+    public static Order reconstructOrder(Long id, User user, OrderStatus status, Double amount, LocalDateTime createdAt, LocalDateTime updatedAt){
+        return new Order(id, user, status, amount, createdAt, updatedAt);
+    }
+
     private void dataValidation(User user, Double amount) {
         if(user == null || amount == null ||  amount <= 0){
             throw new InvalidDataException("Los datos propocionados no son validos");
