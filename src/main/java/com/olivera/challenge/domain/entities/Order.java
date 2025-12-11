@@ -5,17 +5,18 @@ import com.olivera.challenge.domain.enums.user.UserStatus;
 import com.olivera.challenge.domain.exceptions.InvalidDataException;
 import com.olivera.challenge.domain.exceptions.user.InvalidUserStatusException;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Order {
     private Long id;
     private User user;
     private OrderStatus status;
-    private Double amount;
+    private BigDecimal amount;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    private Order(Long id, User user, OrderStatus status, Double amount, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    private Order(Long id, User user, OrderStatus status, BigDecimal amount, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.user = user;
         this.status = status;
@@ -24,18 +25,18 @@ public class Order {
         this.updatedAt = updatedAt;
     }
 
-    public Order createOrder(User user, Double amount){
+    public Order createOrder(User user, BigDecimal amount){
         dataValidation(user, amount);
         userVerification(user.getStatus());
         return new Order(null, user, OrderStatus.PENDING, amount, LocalDateTime.now(), null);
     }
 
-    public static Order reconstructOrder(Long id, User user, OrderStatus status, Double amount, LocalDateTime createdAt, LocalDateTime updatedAt){
+    public static Order reconstructOrder(Long id, User user, OrderStatus status, BigDecimal amount, LocalDateTime createdAt, LocalDateTime updatedAt){
         return new Order(id, user, status, amount, createdAt, updatedAt);
     }
 
-    private void dataValidation(User user, Double amount) {
-        if(user == null || amount == null ||  amount <= 0){
+    private void dataValidation(User user, BigDecimal amount) {
+        if(user == null || amount == null){
             throw new InvalidDataException("Los datos propocionados no son validos");
         }
     }
@@ -58,7 +59,7 @@ public class Order {
         return status;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
