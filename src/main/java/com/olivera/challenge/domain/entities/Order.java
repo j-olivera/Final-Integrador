@@ -4,8 +4,10 @@ import com.olivera.challenge.domain.enums.order.OrderStatus;
 import com.olivera.challenge.domain.enums.user.UserStatus;
 import com.olivera.challenge.domain.exceptions.InvalidDataException;
 import com.olivera.challenge.domain.exceptions.user.InvalidUserStatusException;
+import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Order {
@@ -61,7 +63,19 @@ PENDING -> CANCELLED (if UserStatus is EXPIRED)
     public boolean isApproved(){
         return status == OrderStatus.APPROVED;
     }
-
+    //metodos para cambiar estado de order
+    public void procces(LocalDateTime now){
+        this.status = OrderStatus.PROCESSING;
+        this.updatedAt = now; //pq se actualiza
+    }
+    public void approve(LocalDateTime now){
+        this.status = OrderStatus.APPROVED;
+        this.updatedAt = now; //pq se actualiza
+    }
+    public void cancel(LocalDateTime now){
+        this.status = OrderStatus.CANCELLED;
+        this.updatedAt = now; //pq se actualiza
+    }
     public Long getId() {
         return id;
     }
