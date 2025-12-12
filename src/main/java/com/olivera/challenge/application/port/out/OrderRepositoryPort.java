@@ -6,4 +6,5 @@ import com.olivera.challenge.domain.entities.Order;
 public interface OrderRepositoryPort {
     OrderResponse createOrder(Order order);
     OrderResponse findById(Long id);
+    void processPendingOrder();
 }

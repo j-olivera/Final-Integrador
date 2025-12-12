@@ -6,4 +6,5 @@ import com.olivera.challenge.domain.entities.User;
 public interface UserReporsitoryPort {
     UserResponse registerUser(User user);
     UserResponse findById(Long id);
+    void activateUser();
 }
