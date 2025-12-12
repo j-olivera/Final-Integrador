@@ -47,26 +47,36 @@ public class Order {
         }
     }
 
+    /*
+    Valid order transitions:
+PENDING -> PROCESSING -> APPROVED
+PENDING -> CANCELLED (if UserStatus is EXPIRED)
+     */
+    public boolean isPending(){
+        return status == OrderStatus.PENDING;
+    }
+    public boolean isProcessing(){
+        return status == OrderStatus.PROCESSING;
+    }
+    public boolean isApproved(){
+        return status == OrderStatus.APPROVED;
+    }
+
     public Long getId() {
         return id;
     }
-
     public User getUser() {
         return user;
     }
-
     public OrderStatus getStatus() {
         return status;
     }
-
     public BigDecimal getAmount() {
         return amount;
     }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
