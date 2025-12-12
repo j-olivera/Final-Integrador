@@ -4,7 +4,7 @@ import com.olivera.challenge.application.dto.response.OrderResponse;
 import com.olivera.challenge.domain.entities.Order;
 
 public interface OrderRepositoryPort {
-    OrderResponse createOrder(Order order);
-    OrderResponse findById(Long id);
+    Order createOrder(Order order);
+    Order findById(Long id);
     void processPendingOrder();
 }

@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 
 public class OrderResponse {
     private Long id;
-    private String userName;
+    private String userEmail;
     private BigDecimal amount;
     private OrderStatus orderStatus;
     private LocalDateTime createdAt;
 
     public OrderResponse(Long id, String userName, BigDecimal amount, OrderStatus orderStatus, LocalDateTime createdAt) {
         this.id = id;
-        this.userName = userName;
+        this.userEmail = userName;
         this.amount = amount;
         this.orderStatus = orderStatus;
         this.createdAt = createdAt;
@@ -24,8 +24,8 @@ public class OrderResponse {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserEmail() {
+        return userEmail;
     }
 
     public BigDecimal getAmount() {

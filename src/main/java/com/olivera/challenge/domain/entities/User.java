@@ -43,6 +43,24 @@ public class User {
         return new User(id, password, email, status, activationCode, activationExpiresAt, createdAt);
     }
 
+    /*
+        New users start in PENDING
+    Only ACTIVE users may create orders
+    status: UserStatus (PENDING, ACTIVE, EXPIRED)
+     */
+
+    public boolean isActive(){
+        return this.status == UserStatus.ACTIVE;
+    }
+
+    public boolean isPending(){
+        return this.status == UserStatus.PENDING;
+    }
+
+    public boolean isExpired(){
+        return this.status==UserStatus.EXPIRED;
+    }
+
     public String getPassword(){
         return password;
     }

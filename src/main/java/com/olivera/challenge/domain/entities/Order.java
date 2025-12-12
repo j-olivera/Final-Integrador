@@ -25,23 +25,23 @@ public class Order {
         this.updatedAt = updatedAt;
     }
 
-    public Order createOrder(User user, BigDecimal amount){
+    public static Order createOrder(User user, BigDecimal amount, LocalDateTime now){
         dataValidation(user, amount);
         userVerification(user.getStatus());
-        return new Order(null, user, OrderStatus.PENDING, amount, LocalDateTime.now(), null);
+        return new Order(null, user, OrderStatus.PENDING, amount, now, now);
     }
 
     public static Order reconstructOrder(Long id, User user, OrderStatus status, BigDecimal amount, LocalDateTime createdAt, LocalDateTime updatedAt){
         return new Order(id, user, status, amount, createdAt, updatedAt);
     }
 
-    private void dataValidation(User user, BigDecimal amount) {
+    private static void dataValidation(User user, BigDecimal amount) {
         if(user == null || amount == null){
             throw new InvalidDataException("Los datos propocionados no son validos");
         }
     }
 
-    private void userVerification(UserStatus status) {
+    private static void userVerification(UserStatus status) {
         if(status != UserStatus.ACTIVE){
             throw new InvalidUserStatusException("El Usuario debe estar activo");
         }
