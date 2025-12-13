@@ -3,9 +3,8 @@ package com.olivera.challenge.application.usecase.user;
 import com.olivera.challenge.application.dto.request.CreateUserRequest;
 import com.olivera.challenge.application.dto.response.UserResponse;
 import com.olivera.challenge.application.mappers.user.UserMapper;
-import com.olivera.challenge.application.port.in.user.ActivateUser;
 import com.olivera.challenge.application.port.in.user.RegisterUser;
-import com.olivera.challenge.application.port.out.UserReporsitory;
+import com.olivera.challenge.application.port.out.UserReporsitoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
 import com.olivera.challenge.domain.entities.User;
 import com.olivera.challenge.domain.exceptions.user.EmailAlreadyExistsException;
@@ -14,10 +13,10 @@ import java.time.LocalDateTime;
 
 public class RegisterUserUseCase implements RegisterUser {
 
-    private final UserReporsitory userReporsitory;
+    private final UserReporsitoryPort userReporsitory;
     private final TimeProvider timeProvider;
 
-    public RegisterUserUseCase(UserReporsitory userReporsitory, TimeProvider timeProvider) {
+    public RegisterUserUseCase(UserReporsitoryPort userReporsitory, TimeProvider timeProvider) {
         this.userReporsitory = userReporsitory;
         this.timeProvider = timeProvider;
     }

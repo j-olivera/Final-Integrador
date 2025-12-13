@@ -1,8 +1,7 @@
 package com.olivera.challenge.application.usecase.user;
 
 import com.olivera.challenge.application.port.in.user.ActivateUser;
-import com.olivera.challenge.application.port.out.UserReporsitory;
-import com.olivera.challenge.application.services.TimeProvider;
+import com.olivera.challenge.application.port.out.UserReporsitoryPort;
 import com.olivera.challenge.domain.entities.User;
 import com.olivera.challenge.domain.enums.user.UserStatus;
 import com.olivera.challenge.domain.exceptions.user.UserNotFoundException;
@@ -11,9 +10,9 @@ import java.util.List;
 
 public class ActivateUserImpl implements ActivateUser {
 
-    private final UserReporsitory userReporsitory;
+    private final UserReporsitoryPort userReporsitory;
 
-    public ActivateUserImpl(UserReporsitory userReporsitory) {
+    public ActivateUserImpl(UserReporsitoryPort userReporsitory) {
         this.userReporsitory = userReporsitory;
     }
     @Override
