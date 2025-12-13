@@ -3,6 +3,7 @@ package com.olivera.challenge.domain.entities;
 import com.olivera.challenge.domain.enums.order.OrderStatus;
 import com.olivera.challenge.domain.enums.user.UserStatus;
 import com.olivera.challenge.domain.exceptions.InvalidDataException;
+import com.olivera.challenge.domain.exceptions.order.WrongOrderTransitionException;
 import com.olivera.challenge.domain.exceptions.user.InvalidUserStatusException;
 import org.springframework.cglib.core.Local;
 
@@ -69,6 +70,9 @@ PENDING -> CANCELLED (if UserStatus is EXPIRED)
         this.updatedAt = now; //pq se actualiza
     }
     public void approve(LocalDateTime now){
+        if(this.status != OrderStatus.PROCESSING){
+            throw new WrongOrderTransitionException("Only PROCESSING ORDER CAN APPROVE"); //por seguridad
+        }
         this.status = OrderStatus.APPROVED;
         this.updatedAt = now; //pq se actualiza
     }

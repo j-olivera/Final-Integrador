@@ -18,8 +18,8 @@ public class ActivateUserImpl implements ActivateUser {
     }
     @Override
     public void execute() {
-        List<User> userActives = userReporsitory.findByStatus(UserStatus.ACTIVE);
-        for (User user : userActives) {
+        List<User> userPendings = userReporsitory.findByStatus(UserStatus.PENDING);
+        for (User user : userPendings) {
             if(user.isPending()){
                 //comprobar si esta registrado, solo por las dudas ya que si esta en PENDING debería estar registrado
                 if(!userReporsitory.existsByEmail(user.getEmail())){

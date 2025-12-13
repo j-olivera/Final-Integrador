@@ -24,8 +24,8 @@ public class ProcessPendingOrderImpl implements ProcessPendingOrders {
     public void execute() {
         LocalDateTime now = timeProvider.now();
         //pending a proccesing
-        List<Order> procces = orderRepositoryPort.findByStatus(OrderStatus.PROCESSING);
-        for (Order order : procces) {
+        List<Order> pending = orderRepositoryPort.findByStatus(OrderStatus.PENDING);
+        for (Order order : pending) {
             if(order.getUser().isActive()){
                 order.procces(now);
                 orderRepositoryPort.save(order);//se guarda, no se crea, es una orden ya cargada en la bd
@@ -37,8 +37,8 @@ public class ProcessPendingOrderImpl implements ProcessPendingOrders {
         //repetir
 
         //proccesing a approved
-        List<Order> approved = orderRepositoryPort.findByStatus(OrderStatus.APPROVED);
-        for (Order order : approved) {
+        List<Order> procces = orderRepositoryPort.findByStatus(OrderStatus.PROCESSING);
+        for (Order order : procces) {
             if(order.getUser().isActive()){
                 order.approve(now);
                 orderRepositoryPort.save(order);
