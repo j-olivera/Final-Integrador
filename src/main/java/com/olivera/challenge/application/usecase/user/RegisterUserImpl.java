@@ -11,12 +11,12 @@ import com.olivera.challenge.domain.exceptions.user.EmailAlreadyExistsException;
 
 import java.time.LocalDateTime;
 
-public class RegisterUserUseCase implements RegisterUser {
+public class RegisterUserImpl implements RegisterUser {
 
     private final UserReporsitoryPort userReporsitory;
     private final TimeProvider timeProvider;
 
-    public RegisterUserUseCase(UserReporsitoryPort userReporsitory, TimeProvider timeProvider) {
+    public RegisterUserImpl(UserReporsitoryPort userReporsitory, TimeProvider timeProvider) {
         this.userReporsitory = userReporsitory;
         this.timeProvider = timeProvider;
     }
