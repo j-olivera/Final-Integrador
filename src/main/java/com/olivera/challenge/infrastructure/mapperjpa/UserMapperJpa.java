@@ -2,9 +2,11 @@ package com.olivera.challenge.infrastructure.mapperjpa;
 
 import com.olivera.challenge.domain.entities.User;
 import com.olivera.challenge.infrastructure.entity.UserEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapperJpa {
-    public static UserEntity toEntity(User user){
+    public UserEntity toEntity(User user){
         return new UserEntity(
                 user.getId(),
                 user.getEmail(),
@@ -15,7 +17,7 @@ public class UserMapperJpa {
                 user.getCreatedAt()
         );
     }
-    public static User toDomain(UserEntity userEntity){
+    public User toDomain(UserEntity userEntity){
         User user = User.reconstructUser(userEntity.getId(),
                 userEntity.getPassword(),
                 userEntity.getEmail(),
