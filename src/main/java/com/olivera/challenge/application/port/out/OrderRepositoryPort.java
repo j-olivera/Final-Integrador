@@ -1,15 +1,14 @@
 package com.olivera.challenge.application.port.out;
 
-import com.olivera.challenge.application.dto.response.OrderResponse;
 import com.olivera.challenge.domain.entities.Order;
 import com.olivera.challenge.domain.enums.order.OrderStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderRepositoryPort {
-    Order createOrder(Order order);
-    Order findById(Long id);
+    Order save(Order order); //se le cambio el nombre, asi se entiende que sirve como creacion y/o actualización
+    Optional<Order> findById(Long id);
     void processPendingOrder();
     List<Order> findByStatus(OrderStatus status);
-    Order save (Order order);
 }

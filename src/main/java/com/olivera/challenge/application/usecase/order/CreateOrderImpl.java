@@ -31,7 +31,7 @@ public class CreateOrderImpl implements CreateOrder {
             throw new UserIsNotActiveException("Only user's with status ACTIVE can be create orders");
         }
         Order order = Order.createOrder(user, createOrderRequest.getAmount(),timeProvider.now());
-        Order save = orderRepositoryPort.createOrder(order);
+        Order save = orderRepositoryPort.save(order);
         return OrderMapper.toOrderResponse(save);
     }
 }

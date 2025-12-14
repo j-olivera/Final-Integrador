@@ -8,7 +8,7 @@ import com.olivera.challenge.infrastructure.entity.UserEntity;
 
 public class OrderMapperJpa {
 
-    public static OrderEntity toEntity(Order order) {
+    public OrderEntity toEntity(Order order) {
         UserEntity user = UserMapperJpa.toEntity(order.getUser());
         return new OrderEntity(
                 order.getId(),
@@ -19,7 +19,7 @@ public class OrderMapperJpa {
                 order.getUpdatedAt()
         );
     }
-    public static Order toDomain(OrderEntity entity) {
+    public Order toDomain(OrderEntity entity) {
         User user = UserMapperJpa.toDomain(entity.getUser());
         return Order.reconstructOrder(
                 entity.getId(),

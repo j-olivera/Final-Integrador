@@ -5,7 +5,6 @@ import com.olivera.challenge.application.port.out.OrderRepositoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
 import com.olivera.challenge.domain.entities.Order;
 import com.olivera.challenge.domain.enums.order.OrderStatus;
-import org.aspectj.weaver.ast.Or;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -44,7 +43,7 @@ public class ProcessPendingOrderImpl implements ProcessPendingOrders {
                 orderRepositoryPort.save(order);
             }else if(order.getUser().isExpired()){
                 order.cancel(now);
-                orderRepositoryPort.save(order);
+                orderRepositoryPort.save(order); //se cambia save por .createOrder, se actualiza sola por Id
             }
         }
 
