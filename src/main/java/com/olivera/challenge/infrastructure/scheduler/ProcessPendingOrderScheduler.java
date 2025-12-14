@@ -29,3 +29,8 @@ public class ProcessPendingOrderScheduler {
         }
     }
 }
+/*
+    scheduler solo llama al puerto in
+    luego se conecta en BeanConfiguration
+    NO TIENE LOGICA
+ */

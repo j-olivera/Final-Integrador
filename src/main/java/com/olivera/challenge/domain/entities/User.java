@@ -2,6 +2,7 @@ package com.olivera.challenge.domain.entities;
 
 import com.olivera.challenge.domain.enums.user.UserStatus;
 import com.olivera.challenge.domain.exceptions.InvalidDataException;
+import com.olivera.challenge.domain.exceptions.user.InvalidUserStatusException;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
@@ -59,6 +60,21 @@ public class User {
 
     public boolean isExpired(){
         return this.status==UserStatus.EXPIRED;
+    }
+
+    /*
+    metodos de cambio
+    status: UserStatus (PENDING, ACTIVE, EXPIRED)
+     */
+
+    public void toActivate(){
+        if(this.status != UserStatus.PENDING){
+            throw new InvalidUserStatusException("Only user's with status PENDING can be activated");
+        }
+        this.status = UserStatus.ACTIVE;
+    }
+    public void toExpire(){
+        this.status = UserStatus.EXPIRED;
     }
 
     public String getPassword(){
