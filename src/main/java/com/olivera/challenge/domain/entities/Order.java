@@ -71,7 +71,7 @@ PENDING -> CANCELLED (if UserStatus is EXPIRED)
     }
     public void approve(LocalDateTime now){
         if(this.status != OrderStatus.PROCESSING){
-            throw new WrongOrderTransitionException("Only PROCESSING ORDER CAN APPROVE"); //por seguridad
+            throw new WrongOrderTransitionException("ONLY PROCESSING ORDER CAN APPROVE"); //por seguridad
         }
         this.status = OrderStatus.APPROVED;
         this.updatedAt = now; //pq se actualiza

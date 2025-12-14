@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserReporsitoryPort {
-    User registerUser(User user);
+    User save(User user); //se cambio a save, por la misma razon q en Order
     Optional<User> findById(Long id);
-    void activateUser();
     boolean existsByEmail(String email);
     List<User> findByStatus(UserStatus status);
 }

@@ -30,7 +30,7 @@ public class RegisterUserUseCase implements RegisterUser {
         LocalDateTime now = timeProvider.now();
         LocalDateTime expires = now.plusDays(7);
         User user = User.createUser(request.getEmail(), request.getPassword(),now,expires);
-        User save = userReporsitory.registerUser(user);
+        User save = userReporsitory.save(user);
         return UserMapper.toResponse(save);
     }
 }
