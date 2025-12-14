@@ -38,10 +38,6 @@ public class OrderRepositoryAdapter implements OrderRepositoryPort {
         return orderRepositoryJpa.findById(id).map(orderMapperJpa::toDomain);
     }
 
-    @Override
-    public void processPendingOrder() {
-
-    }
 
     @Override
     public List<Order> findByStatus(OrderStatus status) {

@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface OrderRepositoryPort {
     Order save(Order order); //se le cambio el nombre, asi se entiende que sirve como creacion y/o actualización
     Optional<Order> findById(Long id);
-    void processPendingOrder();
     List<Order> findByStatus(OrderStatus status);
 }
