@@ -48,4 +48,12 @@ public class UserRepositoryAdapter implements UserReporsitoryPort {
                 .stream().map(userMapperJpa::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<User> findAll() {
+        return userRepositoryJpa.findAll()
+                .stream()
+                .map(userMapperJpa::toDomain)
+                .collect(Collectors.toList());
+    }
 }

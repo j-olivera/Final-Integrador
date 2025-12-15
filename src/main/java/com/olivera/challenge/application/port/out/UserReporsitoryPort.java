@@ -11,4 +11,5 @@ public interface UserReporsitoryPort {
     Optional<User> findById(Long id);
     boolean existsByEmail(String email);
     List<User> findByStatus(UserStatus status);
+    List<User> findAll();
 }

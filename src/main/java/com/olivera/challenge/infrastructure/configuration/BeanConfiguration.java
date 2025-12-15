@@ -8,6 +8,7 @@ import com.olivera.challenge.application.port.in.order.RetrieveAllOrders;
 import com.olivera.challenge.application.port.in.user.ActivateUser;
 import com.olivera.challenge.application.port.in.user.ExpireUser;
 import com.olivera.challenge.application.port.in.user.RegisterUser;
+import com.olivera.challenge.application.port.in.user.RetrieveAllUsers;
 import com.olivera.challenge.application.port.out.OrderRepositoryPort;
 import com.olivera.challenge.application.port.out.UserReporsitoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
@@ -17,6 +18,7 @@ import com.olivera.challenge.application.usecase.order.RetrieveAllOrdersImpl;
 import com.olivera.challenge.application.usecase.user.ActivateUserImpl;
 import com.olivera.challenge.application.usecase.user.ExpireUserImpl;
 import com.olivera.challenge.application.usecase.user.RegisterUserImpl;
+import com.olivera.challenge.application.usecase.user.RetrieveAllUsersImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -45,6 +47,10 @@ public class BeanConfiguration {
     @Bean
     public ExpireUser expireUser (UserReporsitoryPort userReportsitoryPort, TimeProvider timeProvider) {
         return new ExpireUserImpl(userReportsitoryPort, timeProvider);
+    }
+    @Bean
+    public RetrieveAllUsers retrieveAllUsers(UserReporsitoryPort userReportsitoryPort) {
+        return new RetrieveAllUsersImpl(userReportsitoryPort);
     }
     //Order
     @Bean
