@@ -28,9 +28,11 @@ public class ExpireUserImpl implements ExpireUser {
             return 0;
         }
         for(User userActivated : userActivateds){
-            userActivated.toExpire();
-            userReporsitoryPort.save(userActivated);//se guarda, no se elimina, la base de datos actualiza el estado mediante la ID
-        }
+            if(userActivated.getActivationExpiresAt().isBefore(timeProvider.now())) {
+                userActivated.toExpire();
+                userReporsitoryPort.save(userActivated);//se guarda, no se elimina, la base de datos actualiza el estado mediante la ID
+            }
+            }
         return expired;
     }
 }

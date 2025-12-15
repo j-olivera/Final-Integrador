@@ -15,7 +15,7 @@ public class ExpireUserScheduler {
         this.expireUser = expireUser;
     }
 
-    @Scheduled(fixedRate = 300000)
+    @Scheduled(fixedRate = 60000)
     public void expireUser() {
         int exp=expireUser.expire();
         if(exp==0){

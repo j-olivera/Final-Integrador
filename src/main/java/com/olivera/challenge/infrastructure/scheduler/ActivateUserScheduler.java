@@ -15,7 +15,7 @@ public class ActivateUserScheduler {
         this.activateUser = activateUser;
     }
 
-    @Scheduled(fixedRate = 300000)
+    @Scheduled(fixedRate = 60000)
     public void execute(){
         int cant=activateUser.execute();
         try {

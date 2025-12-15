@@ -19,7 +19,7 @@ public class ProcessPendingOrderScheduler {
         this.useCase = useCase;
     }
 
-    @Scheduled(fixedDelay = 300000)
+    @Scheduled(fixedDelay = 60000)
     public void processPendingOrder() {
         List<Integer> list = useCase.execute();
         try{
