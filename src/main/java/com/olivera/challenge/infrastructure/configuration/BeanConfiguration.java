@@ -4,6 +4,7 @@ import com.olivera.challenge.application.mappers.order.OrderMapper;
 import com.olivera.challenge.application.mappers.user.UserMapper;
 import com.olivera.challenge.application.port.in.order.CreateOrder;
 import com.olivera.challenge.application.port.in.order.ProcessPendingOrders;
+import com.olivera.challenge.application.port.in.order.RetrieveAllOrders;
 import com.olivera.challenge.application.port.in.user.ActivateUser;
 import com.olivera.challenge.application.port.in.user.ExpireUser;
 import com.olivera.challenge.application.port.in.user.RegisterUser;
@@ -12,6 +13,7 @@ import com.olivera.challenge.application.port.out.UserReporsitoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
 import com.olivera.challenge.application.usecase.order.CreateOrderImpl;
 import com.olivera.challenge.application.usecase.order.ProcessPendingOrderImpl;
+import com.olivera.challenge.application.usecase.order.RetrieveAllOrdersImpl;
 import com.olivera.challenge.application.usecase.user.ActivateUserImpl;
 import com.olivera.challenge.application.usecase.user.ExpireUserImpl;
 import com.olivera.challenge.application.usecase.user.RegisterUserImpl;
@@ -52,6 +54,10 @@ public class BeanConfiguration {
     @Bean
     public CreateOrder createOrder(OrderRepositoryPort orderRepositoryPort,UserReporsitoryPort userReporsitoryPort, TimeProvider timeProvider){
         return new CreateOrderImpl(orderRepositoryPort,userReporsitoryPort, timeProvider);
+    }
+    @Bean
+    public RetrieveAllOrders retrieveAllOrders(OrderRepositoryPort orderRepositoryPort){
+        return new RetrieveAllOrdersImpl(orderRepositoryPort);
     }
 }
 //completar BeanConfiguration

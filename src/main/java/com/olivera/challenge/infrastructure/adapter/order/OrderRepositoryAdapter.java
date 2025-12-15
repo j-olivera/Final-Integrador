@@ -47,4 +47,12 @@ public class OrderRepositoryAdapter implements OrderRepositoryPort {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Order> findAll() {
+        return orderRepositoryJpa.findAll()
+                .stream()
+                .map(orderMapperJpa::toDomain).
+                collect(Collectors.toList());
+    }
+
 }
