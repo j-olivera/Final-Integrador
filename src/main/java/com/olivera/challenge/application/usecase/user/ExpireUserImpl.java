@@ -19,14 +19,19 @@ public class ExpireUserImpl implements ExpireUser {
     }
 
     @Override
-    public void expire() {
+    public int expire() {
         //un usuario se activa por ley, ya que el scheduler esta programado asi, no debería
         //haber usuarios en estado de PENDING siendo expirados, ya que ellos no escojen la fecha de expiración
         List<User> userActivateds = userReporsitoryPort.findByStatus(UserStatus.ACTIVE);
+        int expired=0;
+        if (userActivateds.isEmpty()) {
+            return 0;
+        }
         for(User userActivated : userActivateds){
             userActivated.toExpire();
             userReporsitoryPort.save(userActivated);//se guarda, no se elimina, la base de datos actualiza el estado mediante la ID
         }
+        return expired;
     }
 }
 /*

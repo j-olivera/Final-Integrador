@@ -17,12 +17,15 @@ public class ActivateUserScheduler {
 
     @Scheduled(fixedRate = 300000)
     public void execute(){
-        log.info("Activating user's..");
-        try{
-            activateUser.execute();
-            log.info("User's activated.");
-        }catch(Exception e){
-            log.error("Error executing ActivateUserScheduler", e);
+        int cant=activateUser.execute();
+        try {
+            if(cant==0){
+                log.info("No users to be activated");
+            }else{
+                log.info("{} Users activated", cant);
+            }
+        }catch (Exception e){
+            log.error("Error while activating users",e);
         }
     }
 

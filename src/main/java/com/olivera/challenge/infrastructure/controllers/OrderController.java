@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/users")
 public class OrderController {
 
     private final CreateOrder createOrder;
@@ -17,7 +17,7 @@ public class OrderController {
         this.createOrder = createOrder;
     }
 
-    @PostMapping("/create/{userId}")
+    @PostMapping("/{userId}/orders")
     public ResponseEntity<OrderResponse> createOrder(@RequestBody CreateOrderRequest createOrderRequest, @PathVariable Long userId) {
         OrderResponse response = createOrder.createOrder(createOrderRequest,userId); //recordar que se verifica en el usecase
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

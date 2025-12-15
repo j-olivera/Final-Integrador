@@ -20,20 +20,23 @@ public class ActivateUserImpl implements ActivateUser {
         this.timeProvider = timeProvider;
     }
     @Override
-    public void execute() {
+    public int execute() {
         List<User> userPendings = userReporsitory.findByStatus(UserStatus.PENDING);
-        for (User user : userPendings) {
-            if(user.isPending()){
-                //comprobar si esta registrado, solo por las dudas ya que si esta en PENDING debería estar registrado
-                if(!userReporsitory.existsByEmail(user.getEmail())){
-                    throw new UserNotFoundException("User not found");
-                }
-                if(user.getActivationExpiresAt().isAfter(timeProvider.now())){
-                    throw new UserIsExpiratedException("User can't be activated, reason: Activation expired");
-                }
-                user.toActivate();
-                userReporsitory.save(user);
-            }
+        if(userPendings.isEmpty()){
+            return 0;
         }
+        for (User user : userPendings) {
+            //comprobar si esta registrado, solo por las dudas ya que si esta en PENDING debería estar registrado
+            if(!userReporsitory.existsByEmail(user.getEmail())){
+                throw new UserNotFoundException("User not found");
+            }
+            if(user.getActivationExpiresAt().isBefore(timeProvider.now())){
+                throw new UserIsExpiratedException("User can't be activated, reason: Activation expired");
+            }
+            user.toActivate();
+            userReporsitory.save(user);
+
+        }
+        return userPendings.size();
     }
 }

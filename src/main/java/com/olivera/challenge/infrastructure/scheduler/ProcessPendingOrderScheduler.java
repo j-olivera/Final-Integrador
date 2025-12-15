@@ -8,6 +8,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Component
 public class ProcessPendingOrderScheduler {
     private static final Logger log = LoggerFactory.getLogger(ProcessPendingOrderScheduler.class);
@@ -19,13 +21,14 @@ public class ProcessPendingOrderScheduler {
 
     @Scheduled(fixedDelay = 300000)
     public void processPendingOrder() {
-        log.info("Processing Order");
+        List<Integer> list = useCase.execute();
         try{
-            useCase.execute();
-            log.info("Processing Order Complete");
-            //podría poner un informe de ordenes procesadas y/o aprovadas y eso
+            log.info("{} Orders pending",list.getFirst());
+            log.info("{} Orders processed",list.get(1));
+            log.info("{} Orders approved",list.get(2));
+            log.info("{} Orders rejected",list.get(3));
         }catch(Exception e){
-            log.error("Processing Order Failed");
+            log.info("Something went wrong");
         }
     }
 }

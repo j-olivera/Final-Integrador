@@ -21,7 +21,7 @@ public class UserController {
         this.registerUser = registerUser;
     }
 
-    @PostMapping("/register")
+    @PostMapping
     public ResponseEntity<UserResponse> save(@RequestBody CreateUserRequest createUserRequest) {
         UserResponse response = registerUser.register(createUserRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

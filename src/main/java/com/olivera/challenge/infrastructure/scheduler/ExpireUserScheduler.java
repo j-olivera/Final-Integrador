@@ -17,12 +17,11 @@ public class ExpireUserScheduler {
 
     @Scheduled(fixedRate = 300000)
     public void expireUser() {
-        log.info("Expiring users..");
-        try{
-            expireUser.expire();
-            log.info("Users expired.");
-        } catch (Exception e) {
-            log.error("Error while expiring users..", e);
+        int exp=expireUser.expire();
+        if(exp==0){
+            log.info("No users to be expired");
+        }else{
+            log.info("{} Users expired", exp);
         }
     }
 }
