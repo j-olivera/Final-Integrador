@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfiguration {
 
-    //mappers-timer
+    //mappers
     @Bean
     public UserMapper userMapper() {
         return new UserMapper();
