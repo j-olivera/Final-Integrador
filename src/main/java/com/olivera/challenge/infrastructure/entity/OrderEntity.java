@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Table(name="Order")
+@Table(name="orders") //order es palabra reservada de sql eje
 @Entity
 public class OrderEntity {
     @Id
@@ -15,13 +15,13 @@ public class OrderEntity {
     @JoinColumn()
     @ManyToOne(fetch = FetchType.EAGER)
     private UserEntity user;
-    @Column()
+    @Column(nullable=false)
     private OrderStatus status;
-    @Column()
+    @Column(nullable=false)
     private BigDecimal amount;
-    @Column()
+    @Column(nullable=false)
     private LocalDateTime createdAt;
-    @Column()
+    @Column(nullable=false)
     private LocalDateTime updatedAt;
 
     public OrderEntity(Long id, UserEntity user, OrderStatus status, BigDecimal amount, LocalDateTime createdAt, LocalDateTime updatedAt) {

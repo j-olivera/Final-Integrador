@@ -5,23 +5,23 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-@Table(name="User")
+@Table(name="users")
 @Entity
 public class UserEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Column()
+    @Column(unique=true)
     private String email;
-    @Column()
+    @Column(nullable=false)
     private String password;
-    @Column()
+    @Column(nullable=false)
     private UserStatus status;
-    @Column()
+    @Column(nullable=false)
     private String activationCode;
-    @Column()
+    @Column(nullable=false)
     private LocalDateTime activationExpiresAt;
-    @Column()
+    @Column(nullable=false)
     private LocalDateTime createdAt;
 
     public UserEntity(Long id, String email, String password, UserStatus status, String activationCode, LocalDateTime activationExpiresAt, LocalDateTime createdAt) {
