@@ -1,4 +1,4 @@
-package com.olivera.challenge.infrastructure.controllers;
+package com.olivera.challenge.infrastructure.controllers.user;
 
 import com.olivera.challenge.application.port.in.user.RetrieveAllUsers;
 import com.olivera.challenge.domain.entities.User;

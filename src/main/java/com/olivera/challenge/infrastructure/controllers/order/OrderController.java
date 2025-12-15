@@ -1,4 +1,4 @@
-package com.olivera.challenge.infrastructure.controllers;
+package com.olivera.challenge.infrastructure.controllers.order;
 
 import com.olivera.challenge.application.dto.request.CreateOrderRequest;
 import com.olivera.challenge.application.dto.response.OrderResponse;

@@ -1,9 +1,7 @@
-package com.olivera.challenge.infrastructure.controllers;
+package com.olivera.challenge.infrastructure.controllers.user;
 
 import com.olivera.challenge.application.dto.request.CreateUserRequest;
 import com.olivera.challenge.application.dto.response.UserResponse;
-import com.olivera.challenge.application.port.in.user.ActivateUser;
-import com.olivera.challenge.application.port.in.user.ExpireUser;
 import com.olivera.challenge.application.port.in.user.RegisterUser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

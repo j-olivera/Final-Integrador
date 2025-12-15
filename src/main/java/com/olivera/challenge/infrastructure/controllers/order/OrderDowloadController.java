@@ -1,10 +1,9 @@
-package com.olivera.challenge.infrastructure.controllers;
+package com.olivera.challenge.infrastructure.controllers.order;
 
 import com.olivera.challenge.application.port.in.order.RetrieveAllOrders;
 import com.olivera.challenge.domain.entities.Order;
 import com.olivera.challenge.infrastructure.csv.CsvOrderGenerator;
 import jakarta.servlet.http.HttpServletResponse;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
