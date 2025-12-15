@@ -17,7 +17,7 @@ public class CreateOrderRequest {
     }
 
     public void validar(){
-        if(this.amount == null){
+        if(this.amount == null || this.amount.compareTo(BigDecimal.ZERO) <=0){
             throw new InvalidDataException("Monto no valido");
         }
     }
