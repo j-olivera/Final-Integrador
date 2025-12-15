@@ -6,7 +6,6 @@ import com.olivera.challenge.domain.exceptions.order.WrongOrderTransitionExcepti
 import com.olivera.challenge.domain.exceptions.user.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -47,8 +46,8 @@ public class GlobalHandlerException {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
-    @ExceptionHandler(UserIsExpiratedException.class)
-    public ResponseEntity<ErrorResponse> handleUserIsExpiratedException(UserIsExpiratedException ex) {
+    @ExceptionHandler(UserIsExpiredException.class)
+    public ResponseEntity<ErrorResponse> handleUserIsExpiratedException(UserIsExpiredException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(), //significa:El request es correcto, pero las reglas de negocio no permiten procesarlo
                 ex.getMessage(),

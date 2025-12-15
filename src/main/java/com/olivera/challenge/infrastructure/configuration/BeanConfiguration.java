@@ -10,7 +10,7 @@ import com.olivera.challenge.application.port.in.user.ExpireUser;
 import com.olivera.challenge.application.port.in.user.RegisterUser;
 import com.olivera.challenge.application.port.in.user.RetrieveAllUsers;
 import com.olivera.challenge.application.port.out.OrderRepositoryPort;
-import com.olivera.challenge.application.port.out.UserReporsitoryPort;
+import com.olivera.challenge.application.port.out.UserRepositoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
 import com.olivera.challenge.application.usecase.order.CreateOrderImpl;
 import com.olivera.challenge.application.usecase.order.ProcessPendingOrderImpl;
@@ -37,19 +37,19 @@ public class BeanConfiguration {
     //UseCase
     //User
     @Bean
-    public RegisterUser registerUser(UserReporsitoryPort userReportsitoryPort, TimeProvider timeProvider) {
+    public RegisterUser registerUser(UserRepositoryPort userReportsitoryPort, TimeProvider timeProvider) {
         return new RegisterUserImpl(userReportsitoryPort, timeProvider);
     }
     @Bean
-    public ActivateUser activateUser(UserReporsitoryPort userReportsitoryPort, TimeProvider timeProvider) {
+    public ActivateUser activateUser(UserRepositoryPort userReportsitoryPort, TimeProvider timeProvider) {
         return new ActivateUserImpl(userReportsitoryPort, timeProvider);
     }
     @Bean
-    public ExpireUser expireUser (UserReporsitoryPort userReportsitoryPort, TimeProvider timeProvider) {
+    public ExpireUser expireUser (UserRepositoryPort userReportsitoryPort, TimeProvider timeProvider) {
         return new ExpireUserImpl(userReportsitoryPort, timeProvider);
     }
     @Bean
-    public RetrieveAllUsers retrieveAllUsers(UserReporsitoryPort userReportsitoryPort) {
+    public RetrieveAllUsers retrieveAllUsers(UserRepositoryPort userReportsitoryPort) {
         return new RetrieveAllUsersImpl(userReportsitoryPort);
     }
     //Order
@@ -58,8 +58,8 @@ public class BeanConfiguration {
         return new ProcessPendingOrderImpl(orderRepositoryPort, timeProvider);
     }
     @Bean
-    public CreateOrder createOrder(OrderRepositoryPort orderRepositoryPort,UserReporsitoryPort userReporsitoryPort, TimeProvider timeProvider){
-        return new CreateOrderImpl(orderRepositoryPort,userReporsitoryPort, timeProvider);
+    public CreateOrder createOrder(OrderRepositoryPort orderRepositoryPort, UserRepositoryPort userRepositoryPort, TimeProvider timeProvider){
+        return new CreateOrderImpl(orderRepositoryPort, userRepositoryPort, timeProvider);
     }
     @Bean
     public RetrieveAllOrders retrieveAllOrders(OrderRepositoryPort orderRepositoryPort){

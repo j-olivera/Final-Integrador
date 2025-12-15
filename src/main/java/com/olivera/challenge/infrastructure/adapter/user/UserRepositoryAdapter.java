@@ -1,20 +1,18 @@
 package com.olivera.challenge.infrastructure.adapter.user;
 
-import com.olivera.challenge.application.port.out.UserReporsitoryPort;
+import com.olivera.challenge.application.port.out.UserRepositoryPort;
 import com.olivera.challenge.domain.entities.User;
 import com.olivera.challenge.domain.enums.user.UserStatus;
-import com.olivera.challenge.domain.exceptions.user.UserNotFoundException;
 import com.olivera.challenge.infrastructure.entity.UserEntity;
 import com.olivera.challenge.infrastructure.mapperjpa.UserMapperJpa;
 import com.olivera.challenge.infrastructure.repository.UserRepositoryJpa;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 @Component
-public class UserRepositoryAdapter implements UserReporsitoryPort {
+public class UserRepositoryAdapter implements UserRepositoryPort {
 
     private final UserMapperJpa userMapperJpa;
     private final UserRepositoryJpa userRepositoryJpa;

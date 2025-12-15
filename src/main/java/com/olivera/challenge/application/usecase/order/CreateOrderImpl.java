@@ -5,7 +5,7 @@ import com.olivera.challenge.application.dto.response.OrderResponse;
 import com.olivera.challenge.application.mappers.order.OrderMapper;
 import com.olivera.challenge.application.port.in.order.CreateOrder;
 import com.olivera.challenge.application.port.out.OrderRepositoryPort;
-import com.olivera.challenge.application.port.out.UserReporsitoryPort;
+import com.olivera.challenge.application.port.out.UserRepositoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
 import com.olivera.challenge.domain.entities.Order;
 import com.olivera.challenge.domain.entities.User;
@@ -15,10 +15,10 @@ import com.olivera.challenge.domain.exceptions.user.UserNotFoundException;
 public class CreateOrderImpl implements CreateOrder {
 
     private final OrderRepositoryPort orderRepositoryPort;
-    private final UserReporsitoryPort userReporsitory;
+    private final UserRepositoryPort userReporsitory;
     private final TimeProvider timeProvider;
 
-    public CreateOrderImpl(OrderRepositoryPort orderRepositoryPort, UserReporsitoryPort userReporsitory, TimeProvider timeProvider) {
+    public CreateOrderImpl(OrderRepositoryPort orderRepositoryPort, UserRepositoryPort userReporsitory, TimeProvider timeProvider) {
         this.orderRepositoryPort = orderRepositoryPort;
         this.userReporsitory = userReporsitory;
         this.timeProvider = timeProvider;

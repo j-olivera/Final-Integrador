@@ -31,7 +31,6 @@ public class User {
     //ya que el usuario al registrarse solo necesita su email y contraseña, establecer mas datos es innecesario
     public static User createUser(String email, String password, LocalDateTime activation, LocalDateTime expires){ //se cambio pq me di cuenta q no se iba a poder testear
       validarDatosNoNulosNiVacios(email, password);
-      LocalDateTime now = LocalDateTime.now();
       return new User(null, email, password ,UserStatus.PENDING, UUID.randomUUID().toString(), expires, activation);
     }
 

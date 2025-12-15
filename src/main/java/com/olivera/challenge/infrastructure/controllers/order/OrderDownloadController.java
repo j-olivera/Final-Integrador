@@ -13,10 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-public class OrderDowloadController {
+public class OrderDownloadController {
     private final RetrieveAllOrders retrieveAllOrders;
 
-    public OrderDowloadController(RetrieveAllOrders retrieveAllOrders) {
+    public OrderDownloadController(RetrieveAllOrders retrieveAllOrders) {
         this.retrieveAllOrders = retrieveAllOrders;
     }
 

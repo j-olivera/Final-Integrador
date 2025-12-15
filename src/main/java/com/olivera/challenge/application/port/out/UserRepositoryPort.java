@@ -6,7 +6,7 @@ import com.olivera.challenge.domain.enums.user.UserStatus;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserReporsitoryPort {
+public interface UserRepositoryPort {
     User save(User user); //se cambio a save, por la misma razon q en Order
     Optional<User> findById(Long id);
     boolean existsByEmail(String email);

@@ -4,7 +4,7 @@ import com.olivera.challenge.application.dto.request.CreateUserRequest;
 import com.olivera.challenge.application.dto.response.UserResponse;
 import com.olivera.challenge.application.mappers.user.UserMapper;
 import com.olivera.challenge.application.port.in.user.RegisterUser;
-import com.olivera.challenge.application.port.out.UserReporsitoryPort;
+import com.olivera.challenge.application.port.out.UserRepositoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
 import com.olivera.challenge.domain.entities.User;
 import com.olivera.challenge.domain.exceptions.user.EmailAlreadyExistsException;
@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 
 public class RegisterUserImpl implements RegisterUser {
 
-    private final UserReporsitoryPort userReporsitory;
+    private final UserRepositoryPort userReporsitory;
     private final TimeProvider timeProvider;
 
-    public RegisterUserImpl(UserReporsitoryPort userReporsitory, TimeProvider timeProvider) {
+    public RegisterUserImpl(UserRepositoryPort userReporsitory, TimeProvider timeProvider) {
         this.userReporsitory = userReporsitory;
         this.timeProvider = timeProvider;
     }

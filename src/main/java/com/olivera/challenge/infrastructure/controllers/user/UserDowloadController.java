@@ -26,6 +26,6 @@ public class UserDowloadController {
         response.setCharacterEncoding("UTF-8");
         response.setHeader("Content-Disposition", "attachment; filename=\"users.csv\"");
         List<User> users = retrieveAllUsers.execute();
-        CsvUserGenerator.writeOrder(response.getWriter(),users);
+        CsvUserGenerator.writeUsers(response.getWriter(),users);
     }
 }
