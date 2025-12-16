@@ -36,14 +36,14 @@ public class ProcessPendingOrderImpl implements ProcessPendingOrders {
                 order.procces(now);
                 processingOrders++;
                 orderRepositoryPort.save(order);//se guarda, no se crea, es una orden ya cargada en la bd
-            }else if(order.getUser().isExpired()){
+            }else{
                 order.cancel(now);
                 rejectedOrders++;
                 orderRepositoryPort.save(order);//no se si se elimina, pero por las dudas la guardo
             }
         }
         //repetir
-
+        //PENDING -> CANCELLED (if UserStatus is EXPIRED)
         //proccesing a approved
         List<Order> procces = orderRepositoryPort.findByStatus(OrderStatus.PROCESSING);
         for (Order order : procces) {
@@ -51,10 +51,6 @@ public class ProcessPendingOrderImpl implements ProcessPendingOrders {
                 order.approve(now);
                 approvedOrders++;
                 orderRepositoryPort.save(order);
-            }else if(order.getUser().isExpired()){
-                order.cancel(now);
-                rejectedOrders++;
-                orderRepositoryPort.save(order); //se cambia save por .createOrder, se actualiza sola por Id
             }
         }
         list.add(pendingOrders);

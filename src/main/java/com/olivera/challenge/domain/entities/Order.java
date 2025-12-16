@@ -46,7 +46,7 @@ public class Order {
 
     private static void userVerification(UserStatus status) {
         if(status != UserStatus.ACTIVE){
-            throw new InvalidUserStatusException("El Usuario debe estar activo");
+            throw new InvalidUserStatusException("User status wanted to be ACTIVE");
         }
     }
 
