@@ -25,11 +25,11 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class RegisterUserImplTest {
     @Mock
-    UserRepositoryPort userRepositoryPort;
+    private UserRepositoryPort userRepositoryPort;
     @Mock
-    TimeProvider timeProvider;
+    private TimeProvider timeProvider;
     @InjectMocks
-    RegisterUserImpl registerUserImpl;
+    private RegisterUserImpl registerUserImpl;
 
     @Test
     void registerUserSuccess(){

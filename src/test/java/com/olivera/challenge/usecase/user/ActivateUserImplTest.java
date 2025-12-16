@@ -22,11 +22,11 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class ActivateUserImplTest {
     @Mock
-    UserRepositoryPort  userRepositoryPort;
+    private UserRepositoryPort  userRepositoryPort;
     @Mock
-    TimeProvider timeProvider;
+    private TimeProvider timeProvider;
     @InjectMocks
-    ActivateUserImpl activateUserImpl;
+    private ActivateUserImpl activateUserImpl;
 
     @Test
     void activateUserSuccess(){

@@ -26,13 +26,13 @@ import static org.mockito.Mockito.*;
 public class ProcessPendingOrderImplTest {
 
     @Mock
-    OrderRepositoryPort orderRepositoryPort;
+    private OrderRepositoryPort orderRepositoryPort;
 
     @Mock
-    TimeProvider timeProvider;
+    private TimeProvider timeProvider;
 
     @InjectMocks
-    ProcessPendingOrderImpl processPendingOrderImpl;
+    private ProcessPendingOrderImpl processPendingOrderImpl;
 
     @Test
     void processPendingOrderImplSuccessTest() {
