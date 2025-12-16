@@ -6,7 +6,7 @@ import com.olivera.challenge.domain.entities.User;
 
 import java.util.List;
 
-public class RetrieveAllUsersImpl implements RetrieveAllUsers {
+public class RetrieveAllUsersImpl implements RetrieveAllUsers {//para generar los csv
 
     private final UserRepositoryPort userRepositoryPort;
 

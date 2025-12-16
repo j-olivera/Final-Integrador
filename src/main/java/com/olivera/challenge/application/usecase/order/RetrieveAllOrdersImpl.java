@@ -6,7 +6,7 @@ import com.olivera.challenge.domain.entities.Order;
 
 import java.util.List;
 
-public class RetrieveAllOrdersImpl implements RetrieveAllOrders {
+public class RetrieveAllOrdersImpl implements RetrieveAllOrders { //para generar los csv
 
     private final OrderRepositoryPort orderRepositoryJpa;
 
