@@ -31,6 +31,7 @@ public class ExpireUserImpl implements ExpireUser {
             if(userActivated.getActivationExpiresAt().isBefore(timeProvider.now())) {
                 userActivated.toExpire();
                 userRepositoryPort.save(userActivated);//se guarda, no se elimina, la base de datos actualiza el estado mediante la ID
+                expired++;
             }
             }
         return expired;
