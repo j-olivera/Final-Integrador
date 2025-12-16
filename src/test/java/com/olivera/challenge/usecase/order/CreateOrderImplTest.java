@@ -57,7 +57,7 @@ public class CreateOrderImplTest {
     void userIsNotActiveTest(){
         CreateOrderRequest createOrderRequest = new CreateOrderRequest(new BigDecimal(122));
         LocalDateTime now = LocalDateTime.of(2025,4,10,1,1);
-        when(timeProvider.now()).thenReturn(now);
+//        when(timeProvider.now()).thenReturn(now);
         User user = User.createUser("juan@gmai.com","12345677",now, now.plusDays(7));
         when(userRepositoryPort.findById(1L)).thenReturn(Optional.of(user));
         //

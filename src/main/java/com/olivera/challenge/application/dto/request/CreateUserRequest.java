@@ -20,16 +20,16 @@ public class CreateUserRequest {
     }
     public void validar() {
         if(this.email == null || this.email.trim().isEmpty()){
-            throw new InvalidDataException("El email no puede estar vacio");
+            throw new InvalidDataException("The email is required");
         }
         if(this.password == null || this.password.trim().isEmpty()){
-            throw new InvalidDataException("La contraseña no puede estar vacia");
+            throw new InvalidDataException("The password is required");
         }
         if (!this.email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) { //caracteres permiditos de la a-A hasta la z-Z, @ y demas, (.+) significa que debe haber una cadena desp del arroba
-            throw new InvalidDataException("Email inválido");
+            throw new InvalidDataException("Email is not valid");
         }
         if (this.password.length() < 6) {
-            throw new InvalidDataException("La contraseña debe tener una longitud mayor a 6 caracteres");
+            throw new InvalidDataException("The password length should be at least 6 characters");
         }
     }
 }
