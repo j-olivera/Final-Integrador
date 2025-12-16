@@ -19,8 +19,8 @@ public class UserMapperJpa {
     }
     public User toDomain(UserEntity userEntity){
         User user = User.reconstructUser(userEntity.getId(),
-                userEntity.getPassword(),
                 userEntity.getEmail(),
+                userEntity.getPassword(),
                 userEntity.getStatus(),
                 userEntity.getActivationCode(),
                 userEntity.getActivationExpiresAt(),

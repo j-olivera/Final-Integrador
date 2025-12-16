@@ -18,7 +18,7 @@ public class User {
     private LocalDateTime activationExpiresAt;
     private LocalDateTime createdAt;
 
-    private User(Long id, String password,String email, UserStatus status, String activationCode, LocalDateTime activationExpiresAt, LocalDateTime createdAt) {
+    private User(Long id, String email,String password, UserStatus status, String activationCode, LocalDateTime activationExpiresAt, LocalDateTime createdAt) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -39,8 +39,8 @@ public class User {
             throw new InvalidDataException("Los datos propocionados no son validos");
     }
 
-    public static User reconstructUser(Long id, String password,String email, UserStatus status, String activationCode, LocalDateTime activationExpiresAt, LocalDateTime createdAt) {
-        return new User(id, password, email, status, activationCode, activationExpiresAt, createdAt);
+    public static User reconstructUser(Long id, String email,String password, UserStatus status, String activationCode, LocalDateTime activationExpiresAt, LocalDateTime createdAt) {
+        return new User(id, email, password, status, activationCode, activationExpiresAt, createdAt);
     }
 
     /*
