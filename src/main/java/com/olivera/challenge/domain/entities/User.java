@@ -35,7 +35,7 @@ public class User {
     }
 
     public static void validarDatosNoNulosNiVacios(String email, String password) {
-        if(email == null || email.isEmpty() || password == null || password.isEmpty())
+        if(email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty())
             throw new InvalidDataException("Los datos propocionados no son validos");
     }
 
