@@ -13,14 +13,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserDowloadController {
+public class UserDownloadController {
     private final RetrieveAllUsers retrieveAllUsers;
 
-    public UserDowloadController(RetrieveAllUsers retrieveAllUsers) {
+    public UserDownloadController(RetrieveAllUsers retrieveAllUsers) {
         this.retrieveAllUsers = retrieveAllUsers;
     }
 
-    @GetMapping
+    @GetMapping("/export")
     public void exportUsersToCsv(HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
         response.setCharacterEncoding("UTF-8");

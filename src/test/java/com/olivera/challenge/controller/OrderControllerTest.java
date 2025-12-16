@@ -54,7 +54,7 @@ public class OrderControllerTest {
                 OrderStatus.PENDING,
                 LocalDateTime.now()
         );
-        when(createOrder.createOrder(request,userResponse.getId())).thenReturn(response);
+        when(createOrder.createOrder(any(CreateOrderRequest.class),anyLong())).thenReturn(response);
 
         mockMvc.perform(post("/api/users/{userId}/orders", userResponse.getId())
                         .contentType(MediaType.APPLICATION_JSON)
