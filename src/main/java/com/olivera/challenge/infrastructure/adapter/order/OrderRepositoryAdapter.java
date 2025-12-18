@@ -15,8 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class OrderRepositoryAdapter implements OrderRepositoryPort {
 
-    //crear los repositorios jpa para user y order, ya que se debe usar aca
-    //revisar como se implementaría proccesPendingOrder al ser Schulder
+
     private final OrderRepositoryJpa orderRepositoryJpa;
     private final OrderMapperJpa orderMapperJpa;
 

@@ -19,7 +19,7 @@ public class OrderController {
 
     @PostMapping("/{userId}/orders")
     public ResponseEntity<OrderResponse> createOrder(@RequestBody CreateOrderRequest createOrderRequest, @PathVariable Long userId) {
-        OrderResponse response = createOrder.createOrder(createOrderRequest,userId); //recordar que se verifica en el usecase
+        OrderResponse response = createOrder.createOrder(createOrderRequest,userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

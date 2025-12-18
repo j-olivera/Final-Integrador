@@ -46,7 +46,6 @@ public class UserControllerTest {
                 );
         when(registerUser.register(any(CreateUserRequest.class))).thenReturn(userResponse);
 
-        // WHEN & THEN
         mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userRequest)))

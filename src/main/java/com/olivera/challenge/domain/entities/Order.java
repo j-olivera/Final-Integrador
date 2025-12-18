@@ -67,7 +67,7 @@ PENDING -> CANCELLED (if UserStatus is EXPIRED)
     //metodos para cambiar estado de order
     public void procces(LocalDateTime now){
         this.status = OrderStatus.PROCESSING;
-        this.updatedAt = now; //pq se actualiza
+        this.updatedAt = now;
     }
     public void approve(LocalDateTime now){
         if(this.status != OrderStatus.PROCESSING){
@@ -78,7 +78,7 @@ PENDING -> CANCELLED (if UserStatus is EXPIRED)
     }
     public void cancel(LocalDateTime now){
         this.status = OrderStatus.CANCELLED;
-        this.updatedAt = now; //pq se actualiza
+        this.updatedAt = now;
     }
     public Long getId() {
         return id;

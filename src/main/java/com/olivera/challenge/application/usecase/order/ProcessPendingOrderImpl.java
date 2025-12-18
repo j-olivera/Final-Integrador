@@ -35,14 +35,13 @@ public class ProcessPendingOrderImpl implements ProcessPendingOrders {
             if(order.getUser().isActive()){
                 order.procces(now);
                 processingOrders++;
-                orderRepositoryPort.save(order);//se guarda, no se crea, es una orden ya cargada en la bd
+                orderRepositoryPort.save(order);
             }else{
                 order.cancel(now);
                 rejectedOrders++;
-                orderRepositoryPort.save(order);//no se si se elimina, pero por las dudas la guardo
+                orderRepositoryPort.save(order);
             }
         }
-        //repetir
         //PENDING -> CANCELLED (if UserStatus is EXPIRED)
         //proccesing a approved
         List<Order> procces = orderRepositoryPort.findByStatus(OrderStatus.PROCESSING);

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Table(name="orders") //order es palabra reservada de sql eje
+@Table(name="orders")
 @Entity
 public class OrderEntity {
     @Id
