@@ -7,6 +7,7 @@ import com.olivera.challenge.application.port.in.order.ProcessPendingOrders;
 import com.olivera.challenge.application.port.in.order.RetrieveAllOrders;
 import com.olivera.challenge.application.port.in.user.ActivateUser;
 import com.olivera.challenge.application.port.in.user.ExpireUser;
+import com.olivera.challenge.application.port.in.user.LoginUser;
 import com.olivera.challenge.application.port.in.user.RegisterUser;
 import com.olivera.challenge.application.port.in.user.RetrieveAllUsers;
 import com.olivera.challenge.application.port.out.OrderRepositoryPort;
@@ -17,10 +18,13 @@ import com.olivera.challenge.application.usecase.order.ProcessPendingOrderImpl;
 import com.olivera.challenge.application.usecase.order.RetrieveAllOrdersImpl;
 import com.olivera.challenge.application.usecase.user.ActivateUserImpl;
 import com.olivera.challenge.application.usecase.user.ExpireUserImpl;
+import com.olivera.challenge.application.usecase.user.LoginUserImpl;
 import com.olivera.challenge.application.usecase.user.RegisterUserImpl;
 import com.olivera.challenge.application.usecase.user.RetrieveAllUsersImpl;
+import com.olivera.challenge.infrastructure.configuration.jwt.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class BeanConfiguration {
@@ -37,8 +41,12 @@ public class BeanConfiguration {
     //UseCase
     //User
     @Bean
-    public RegisterUser registerUser(UserRepositoryPort userReportsitoryPort, TimeProvider timeProvider) {
-        return new RegisterUserImpl(userReportsitoryPort, timeProvider);
+    public LoginUser loginUser(UserRepositoryPort userRepositoryPort, PasswordEncoder passwordEncoder, JwtService jwtService) {
+        return new LoginUserImpl(userRepositoryPort, passwordEncoder, jwtService);
+    }
+    @Bean
+    public RegisterUser registerUser(UserRepositoryPort userReportsitoryPort, TimeProvider timeProvider, PasswordEncoder passwordEncoder) {
+        return new RegisterUserImpl(userReportsitoryPort, timeProvider, passwordEncoder);
     }
     @Bean
     public ActivateUser activateUser(UserRepositoryPort userReportsitoryPort, TimeProvider timeProvider) {

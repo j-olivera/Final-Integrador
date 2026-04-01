@@ -15,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
@@ -28,6 +29,8 @@ public class RegisterUserImplTest {
     private UserRepositoryPort userRepositoryPort;
     @Mock
     private TimeProvider timeProvider;
+    @Mock
+    private PasswordEncoder passwordEncoder; // necesario desde que RegisterUserImpl encripta la password con BCrypt
     @InjectMocks
     private RegisterUserImpl registerUserImpl;
 
@@ -38,6 +41,7 @@ public class RegisterUserImplTest {
 
         when(timeProvider.now()).thenReturn(now);
         when(userRepositoryPort.existsByEmail(request.getEmail())).thenReturn(false);
+        when(passwordEncoder.encode(request.getPassword())).thenReturn("$2a$10$hashedPassword"); // stub necesario porque el mock devuelve null por defecto
         when(userRepositoryPort.save(any(User.class))).thenAnswer(i -> i.getArgument(0));
         //
         UserResponse userResponse = registerUserImpl.register(request);

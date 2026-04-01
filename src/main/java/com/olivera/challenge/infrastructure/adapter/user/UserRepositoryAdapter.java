@@ -41,6 +41,12 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     }
 
     @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepositoryJpa.findByEmail(email)
+                .map(userMapperJpa::toDomain);
+    }
+
+    @Override
     public List<User> findByStatus(UserStatus status) {
         return userRepositoryJpa.findByStatus(status)
                 .stream().map(userMapperJpa::toDomain)

@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface UserRepositoryPort {
     User save(User user); //se cambio a save, por la misma razon q en Order
     Optional<User> findById(Long id);
+    Optional<User> findByEmail(String email); // necesario para el caso de uso de login
     boolean existsByEmail(String email);
     List<User> findByStatus(UserStatus status);
     List<User> findAll();

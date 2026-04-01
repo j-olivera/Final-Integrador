@@ -9,9 +9,13 @@ import com.olivera.challenge.domain.enums.user.UserStatus;
 import com.olivera.challenge.domain.exceptions.InvalidDataException;
 import com.olivera.challenge.domain.exceptions.user.EmailAlreadyExistsException;
 import com.olivera.challenge.infrastructure.controllers.user.UserController;
+import com.olivera.challenge.infrastructure.configuration.jwt.JwtAuthenticationFilter;
+import com.olivera.challenge.infrastructure.configuration.jwt.JwtService;
+import com.olivera.challenge.infrastructure.configuration.jwt.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,9 +31,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(UserController.class)
+@Import({SecurityConfig.class, JwtAuthenticationFilter.class})
 public class UserControllerTest {
     @MockitoBean
     private RegisterUser registerUser;
+    @MockitoBean
+    private JwtService jwtService; // necesario para que Spring Security pueda crear JwtAuthenticationFilter en tests WebMvcTest
     @Autowired
     private MockMvc mockMvc; //simula http
     @Autowired
