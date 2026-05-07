@@ -20,8 +20,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mockConstructionWithAnswer;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -63,7 +63,7 @@ public class OrderControllerTest {
                 OrderStatus.PENDING,
                 LocalDateTime.now()
         );
-        when(createOrder.createOrder(any(CreateOrderRequest.class),anyLong())).thenReturn(response);
+        when(createOrder.createOrder(any(CreateOrderRequest.class),anyString())).thenReturn(response);
 
         mockMvc.perform(post("/api/users/{userId}/orders", userResponse.getId())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -74,7 +74,7 @@ public class OrderControllerTest {
     @WithMockUser // simula usuario autenticado
     void userNotFoundValueNotFound() throws Exception {
         CreateOrderRequest request = new CreateOrderRequest(new BigDecimal(123));
-        when(createOrder.createOrder(any(CreateOrderRequest.class),anyLong())).thenThrow(new UserNotFoundException("User not found"));
+        when(createOrder.createOrder(any(CreateOrderRequest.class),anyString())).thenThrow(new UserNotFoundException("User not found"));
         mockMvc.perform(post("/api/users/{userId}/orders",1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))

@@ -24,9 +24,9 @@ public class CreateOrderImpl implements CreateOrder {
         this.timeProvider = timeProvider;
     }
 
-    public OrderResponse createOrder(CreateOrderRequest createOrderRequest, Long userId){
+    public OrderResponse createOrder(CreateOrderRequest createOrderRequest, String email){
         createOrderRequest.validar();
-        User user = userReporsitory.findById(userId).orElseThrow(()-> new UserNotFoundException("User not found"));
+        User user = userReporsitory.findByEmail(email).orElseThrow(()-> new UserNotFoundException("User not found"));
         if(!user.isActive()){
             throw new UserIsNotActiveException("Only user's with status ACTIVE can be create orders");
         }

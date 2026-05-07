@@ -46,11 +46,11 @@ public class CreateOrderImplTest {
         when(orderRepositoryPort.save(any(Order.class))).thenAnswer(i -> i.getArgument(0));
         when(userRepositoryPort.findById(1L)).thenReturn(Optional.of(user));
         //
-        OrderResponse response = createOrderImpl.createOrder(createOrderRequest,1L);
+        OrderResponse response = createOrderImpl.createOrder(createOrderRequest,"12@gmail.com");
         //
         Assertions.assertEquals(new BigDecimal(122), response.getAmount());
         verify(orderRepositoryPort,times(1)).save(any(Order.class));
-        verify(userRepositoryPort,times(1)).findById(1L);
+        verify(userRepositoryPort,times(1)).findByEmail("12@gmail.com");
 
     }
     @Test
@@ -61,9 +61,9 @@ public class CreateOrderImplTest {
         User user = User.createUser("juan@gmai.com","12345677",now, now.plusDays(7));
         when(userRepositoryPort.findById(1L)).thenReturn(Optional.of(user));
         //
-        Assertions.assertThrows(UserIsNotActiveException.class,() -> createOrderImpl.createOrder(createOrderRequest,1L));
+        Assertions.assertThrows(UserIsNotActiveException.class,() -> createOrderImpl.createOrder(createOrderRequest,"12@gmail.com"));
         //
-        verify(userRepositoryPort,times(1)).findById(1L);
+        verify(userRepositoryPort,times(1)).findByEmail("12@gmail.com");
         verify(orderRepositoryPort,never()).save(any(Order.class));
     }
     @Test
@@ -71,9 +71,9 @@ public class CreateOrderImplTest {
         CreateOrderRequest createOrderRequest = new CreateOrderRequest(new BigDecimal(122));
         when(userRepositoryPort.findById(1L)).thenReturn(Optional.empty());
         //
-        Assertions.assertThrows(UserNotFoundException.class,() -> createOrderImpl.createOrder(createOrderRequest,1L));
+        Assertions.assertThrows(UserNotFoundException.class,() -> createOrderImpl.createOrder(createOrderRequest,"12@gmail.com"));
         //
-        verify(userRepositoryPort,times(1)).findById(1L);
+        verify(userRepositoryPort,times(1)).findByEmail("12@gmail.com");
         verify(orderRepositoryPort,never()).save(any(Order.class));
     }
 
