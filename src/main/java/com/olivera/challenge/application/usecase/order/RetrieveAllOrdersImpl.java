@@ -24,3 +24,4 @@ public class RetrieveAllOrdersImpl implements RetrieveAllOrders { //para generar
                 .toList();
     }
 }
+// nuevo use case que traiga las ordenes de un usuario por su email

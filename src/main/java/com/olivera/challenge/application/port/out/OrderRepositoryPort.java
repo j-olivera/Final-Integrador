@@ -2,6 +2,7 @@ package com.olivera.challenge.application.port.out;
 
 import com.olivera.challenge.domain.entities.Order;
 import com.olivera.challenge.domain.enums.order.OrderStatus;
+import com.olivera.challenge.domain.enums.user.UserStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,4 +12,5 @@ public interface OrderRepositoryPort {
     Optional<Order> findById(Long id);
     List<Order> findByStatus(OrderStatus status);
     List<Order> findAll();
+    List<Order> findByUserEmail(String email);
 }

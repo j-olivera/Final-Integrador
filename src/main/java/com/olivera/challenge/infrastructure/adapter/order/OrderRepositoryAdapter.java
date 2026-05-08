@@ -3,6 +3,7 @@ package com.olivera.challenge.infrastructure.adapter.order;
 import com.olivera.challenge.application.port.out.OrderRepositoryPort;
 import com.olivera.challenge.domain.entities.Order;
 import com.olivera.challenge.domain.enums.order.OrderStatus;
+import com.olivera.challenge.domain.enums.user.UserStatus;
 import com.olivera.challenge.infrastructure.entity.OrderEntity;
 import com.olivera.challenge.infrastructure.mapperjpa.OrderMapperJpa;
 import com.olivera.challenge.infrastructure.repository.OrderRepositoryJpa;
@@ -52,6 +53,14 @@ public class OrderRepositoryAdapter implements OrderRepositoryPort {
                 .stream()
                 .map(orderMapperJpa::toDomain).
                 collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Order> findByUserEmail(String email) {
+        return orderRepositoryJpa.findByUserEmail(email) //debería ser activo
+                .stream()
+                .map(orderMapperJpa::toDomain)
+                .toList();
     }
 
 }

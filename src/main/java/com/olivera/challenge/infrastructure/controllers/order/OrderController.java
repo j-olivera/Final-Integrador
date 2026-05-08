@@ -3,6 +3,7 @@ package com.olivera.challenge.infrastructure.controllers.order;
 import com.olivera.challenge.application.dto.request.CreateOrderRequest;
 import com.olivera.challenge.application.dto.response.OrderResponse;
 import com.olivera.challenge.application.port.in.order.CreateOrder;
+import com.olivera.challenge.application.port.in.order.GetOrdersByUserActiveEmail;
 import com.olivera.challenge.application.port.in.order.RetrieveAllOrders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,10 @@ import java.util.List;
 public class OrderController {
 
     private final CreateOrder createOrder;
-    private final RetrieveAllOrders retrieveAllOrders;
-    public OrderController(CreateOrder createOrder, RetrieveAllOrders retrieveAllOrders) {
+    private final GetOrdersByUserActiveEmail getOrders;
+    public OrderController(CreateOrder createOrder,  GetOrdersByUserActiveEmail getOrders) {
         this.createOrder = createOrder;
-        this.retrieveAllOrders = retrieveAllOrders;
+        this.getOrders = getOrders;
     }
 
     @PostMapping //cambio para más tarde
@@ -32,7 +33,7 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<OrderResponse>> getAllOrder(@AuthenticationPrincipal String email){
-        List<OrderResponse> orders = retrieveAllOrders.execute();
+        List<OrderResponse> orders = getOrders.execute(email);
         return ResponseEntity.status(HttpStatus.OK).body(orders);
     }
 }
