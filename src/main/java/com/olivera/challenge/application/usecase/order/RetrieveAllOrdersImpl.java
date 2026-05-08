@@ -1,5 +1,7 @@
 package com.olivera.challenge.application.usecase.order;
 
+import com.olivera.challenge.application.dto.response.OrderResponse;
+import com.olivera.challenge.application.mappers.order.OrderMapper;
 import com.olivera.challenge.application.port.in.order.RetrieveAllOrders;
 import com.olivera.challenge.application.port.out.OrderRepositoryPort;
 import com.olivera.challenge.domain.entities.Order;
@@ -15,7 +17,10 @@ public class RetrieveAllOrdersImpl implements RetrieveAllOrders { //para generar
     }
 
     @Override
-    public List<Order> execute() {
-        return orderRepositoryJpa.findAll();
+    public List<OrderResponse> execute() {
+        return orderRepositoryJpa.findAll().
+                stream()
+                .map(OrderMapper::toOrderResponse)
+                .toList();
     }
 }
