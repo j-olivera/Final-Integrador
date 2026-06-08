@@ -32,7 +32,7 @@ public class OrderController {
 
 
     @GetMapping
-    public ResponseEntity<List<OrderResponse>> getAllOrder(@AuthenticationPrincipal String email){
+    public ResponseEntity<List<OrderResponse>> getOrdersByEmail(@AuthenticationPrincipal String email){
         List<OrderResponse> orders = getOrders.execute(email);
         return ResponseEntity.status(HttpStatus.OK).body(orders);
     }

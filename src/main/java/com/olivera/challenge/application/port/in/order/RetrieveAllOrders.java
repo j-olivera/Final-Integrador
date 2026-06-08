@@ -6,5 +6,5 @@ import com.olivera.challenge.domain.entities.Order;
 import java.util.List;
 
 public interface RetrieveAllOrders {
-    List<OrderResponse> execute();
+    List<Order> execute(); //para el generador de reportes csv
 }

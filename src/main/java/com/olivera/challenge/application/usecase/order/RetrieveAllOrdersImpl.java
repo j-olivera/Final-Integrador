@@ -10,18 +10,15 @@ import java.util.List;
 
 public class RetrieveAllOrdersImpl implements RetrieveAllOrders { //para generar los csv
 
-    private final OrderRepositoryPort orderRepositoryJpa;
+    private final OrderRepositoryPort orderRepository;
 
-    public RetrieveAllOrdersImpl(OrderRepositoryPort orderRepositoryJpa) {
-        this.orderRepositoryJpa = orderRepositoryJpa;
+    public RetrieveAllOrdersImpl(OrderRepositoryPort orderRepository) {
+        this.orderRepository= orderRepository;
     }
 
     @Override
-    public List<OrderResponse> execute() {
-        return orderRepositoryJpa.findAll().
-                stream()
-                .map(OrderMapper::toOrderResponse)
-                .toList();
+    public List<Order> execute() {
+        return orderRepository.findAll();
     }
 }
 // nuevo use case que traiga las ordenes de un usuario por su email
