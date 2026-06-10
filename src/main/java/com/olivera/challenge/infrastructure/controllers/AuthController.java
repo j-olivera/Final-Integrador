@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("http://localhost:4200")  // Permite llamadas desde el frontend Angular
 public class AuthController {
 
     private final LoginUser loginUser;

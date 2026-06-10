@@ -1,5 +1,6 @@
 package com.olivera.challenge.infrastructure.configuration.jwt;
 
+import com.olivera.challenge.domain.exceptions.user.InvalidCredentialsException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -80,7 +81,7 @@ public class JwtService {
                     .build()
                     .parseSignedClaims(token);
             return true;
-        } catch (Exception e) {
+        } catch (InvalidCredentialsException e) {
             // Token expirado, firma inválida, malformado, etc.
             return false;
         }
