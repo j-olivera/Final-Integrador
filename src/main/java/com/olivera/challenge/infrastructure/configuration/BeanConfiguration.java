@@ -2,10 +2,12 @@ package com.olivera.challenge.infrastructure.configuration;
 
 import com.olivera.challenge.application.mappers.order.OrderMapper;
 import com.olivera.challenge.application.mappers.user.UserMapper;
+import com.olivera.challenge.application.port.in.order.CancelOrder;
 import com.olivera.challenge.application.port.in.order.CreateOrder;
 import com.olivera.challenge.application.port.in.order.GetOrdersByUserActiveEmail;
 import com.olivera.challenge.application.port.in.order.ProcessPendingOrders;
 import com.olivera.challenge.application.port.in.order.RetrieveAllOrders;
+import com.olivera.challenge.application.port.in.order.UpdateOrder;
 import com.olivera.challenge.application.port.in.user.ActivateUser;
 import com.olivera.challenge.application.port.in.user.ExpireUser;
 import com.olivera.challenge.application.port.in.user.LoginUser;
@@ -14,10 +16,12 @@ import com.olivera.challenge.application.port.in.user.RetrieveAllUsers;
 import com.olivera.challenge.application.port.out.OrderRepositoryPort;
 import com.olivera.challenge.application.port.out.UserRepositoryPort;
 import com.olivera.challenge.application.services.TimeProvider;
+import com.olivera.challenge.application.usecase.order.CancelOrderImpl;
 import com.olivera.challenge.application.usecase.order.CreateOrderImpl;
 import com.olivera.challenge.application.usecase.order.GetOrderByUserActiveEmailImpl;
 import com.olivera.challenge.application.usecase.order.ProcessPendingOrderImpl;
 import com.olivera.challenge.application.usecase.order.RetrieveAllOrdersImpl;
+import com.olivera.challenge.application.usecase.order.UpdateOrderImpl;
 import com.olivera.challenge.application.usecase.user.ActivateUserImpl;
 import com.olivera.challenge.application.usecase.user.ExpireUserImpl;
 import com.olivera.challenge.application.usecase.user.LoginUserImpl;
@@ -78,6 +82,14 @@ public class BeanConfiguration {
     @Bean
     public GetOrdersByUserActiveEmail getOrdersByUserActiveEmail(OrderRepositoryPort orderRepositoryPort, UserRepositoryPort userRepositoryPort){
         return new GetOrderByUserActiveEmailImpl(orderRepositoryPort,userRepositoryPort);
+    }
+    @Bean
+    public UpdateOrder updateOrder(OrderRepositoryPort orderRepositoryPort, TimeProvider timeProvider){
+        return new UpdateOrderImpl(orderRepositoryPort, timeProvider);
+    }
+    @Bean
+    public CancelOrder cancelOrder(OrderRepositoryPort orderRepositoryPort, TimeProvider timeProvider){
+        return new CancelOrderImpl(orderRepositoryPort, timeProvider);
     }
 }
 //completar BeanConfiguration
