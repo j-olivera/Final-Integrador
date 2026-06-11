@@ -1,6 +1,7 @@
 package com.olivera.challenge.infrastructure.configuration;
 
 import com.olivera.challenge.domain.exceptions.InvalidDataException;
+import com.olivera.challenge.domain.exceptions.order.OrderForbiddenException;
 import com.olivera.challenge.domain.exceptions.order.OrderNotFoundException;
 import com.olivera.challenge.domain.exceptions.order.WrongOrderTransitionException;
 import com.olivera.challenge.domain.exceptions.user.*;
