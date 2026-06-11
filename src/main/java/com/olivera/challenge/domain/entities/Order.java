@@ -80,6 +80,14 @@ PENDING -> CANCELLED (if UserStatus is EXPIRED)
         this.status = OrderStatus.CANCELLED;
         this.updatedAt = now;
     }
+
+    public void updateAmount(BigDecimal newAmount, LocalDateTime now) {
+        if (newAmount == null || newAmount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new InvalidDataException("El monto debe ser mayor a cero");
+        }
+        this.amount = newAmount;
+        this.updatedAt = now;
+    }
     public Long getId() {
         return id;
     }

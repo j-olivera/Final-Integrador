@@ -97,6 +97,16 @@ public class GlobalHandlerException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
+    @ExceptionHandler(OrderForbiddenException.class)
+    public ResponseEntity<ErrorResponse> handleOrderForbiddenException(OrderForbiddenException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.FORBIDDEN.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
+    }
+
     @ExceptionHandler(WrongOrderTransitionException.class)
     public ResponseEntity<ErrorResponse> handleWrongOrderTransitionException(WrongOrderTransitionException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
